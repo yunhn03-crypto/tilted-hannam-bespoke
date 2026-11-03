@@ -1020,14 +1020,13 @@
       archFabricColor: "7) arch fabric color",
       tableTypeGarden: "8) table type (garden)",
       tableFabricSquare: "9) table fabric (square table)",
-      candleColor: "10) candle color",
-      chairFabricGarden: "11) chair fabric (garden)",
-      bouquet: "12) bouquet",
+      chairFabricGarden: "10) chair fabric (garden)",
+      bouquet: "11) bouquet",
       bouquetComposition: "bouquet composition",
-      eventTicket: "13) event ticket",
-      soundDirection: "14) sound direction",
-      flowerDirection: "15) flower direction",
-      detailedInquiries: "16) detailed inquiries",
+      eventTicket: "12) event ticket",
+      soundDirection: "13) sound direction",
+      flowerDirection: "14) flower direction",
+      detailedInquiries: "15) detailed inquiries",
       lunch: "12pm l 10:30 - 13:30",
       dinner: "6pm l 16:30 - 19:30",
       values: {
@@ -1067,14 +1066,13 @@ stripe: "stripe",
       archFabricColor: "7) 아치 패브릭 컬러",
       tableTypeGarden: "8) 테이블 타입 (가든)",
       tableFabricSquare: "9) 테이블 패브릭 (스퀘어 테이블)",
-      candleColor: "10) 캔들 컬러",
-      chairFabricGarden: "11) 의자 패브릭 (가든)",
-      bouquet: "12) 부케",
+      chairFabricGarden: "10) 의자 패브릭 (가든)",
+      bouquet: "11) 부케",
       bouquetComposition: "부케 구성",
-      eventTicket: "13) 이벤트 티켓",
-      soundDirection: "14) 사운드 디렉션",
-      flowerDirection: "15) 플라워 디렉션",
-      detailedInquiries: "16) 상세 문의",
+      eventTicket: "12) 이벤트 티켓",
+      soundDirection: "13) 사운드 디렉션",
+      flowerDirection: "14) 플라워 디렉션",
+      detailedInquiries: "15) 상세 문의",
       lunch: "낮 12시 l 10:30 - 13:30",
       dinner: "저녁 6시 l 16:30 - 19:30",
       values: {
@@ -1144,7 +1142,6 @@ stripe: "스트라이프",
       color: lang.archFabricColor,
       garden_shape: lang.tableTypeGarden,
       table_deco: lang.tableFabricSquare,
-      candle_color: lang.candleColor,
       chair_color: lang.chairFabricGarden,
       bouquet: lang.bouquet,
       ticket: lang.eventTicket,
@@ -1166,7 +1163,6 @@ stripe: "스트라이프",
   function getPlaceholderImageSlotTitle(){ return state.uiLang === "ko" ? "이미지 슬롯" : "image slot"; }
   function getPlaceholderImageSlotDesc(){ return state.uiLang === "ko" ? "관리자에서 이미지 url 연결" : "connect image url in admin"; }
   function getStepNoteSquareTable(){ return state.uiLang === "ko" ? "* 스퀘어 테이블(논가든)에 적용됩니다." : "* applies to square tables (non-garden)."; }
-  function getStepNoteCandle(){ return state.uiLang === "ko" ? "* 안전상 캔들 점화는 하지 않습니다." : "* candle is not lit for safety."; }
   function getBouquetPlaceholder(){ return state.uiLang === "ko" ? "부케 구성을 작성하세요 (영문)" : "write bouquet composition (english)"; }
   function getRequestPlaceholder(){ return state.uiLang === "ko" ? "추가 요청사항을 작성하세요" : "write additional request"; }
   function getNamesTitle(){ return state.uiLang === "ko" ? "이름" : "names"; }
@@ -1198,7 +1194,6 @@ stripe: "스트라이프",
       [lang.archFabricColor, translateDisplay(state.fabricColor)],
       [lang.tableTypeGarden, translateDisplay(state.gardenTableShape)],
       [lang.tableFabricSquare, translateDisplay(state.tableDeco)],
-      [lang.candleColor, translateDisplay(state.candleColor)],
       [lang.chairFabricGarden, translateDisplay(state.chairFabricColor)],
       [lang.bouquet, translateDisplay(state.bouquet)],
       ...(state.bouquet === "o" ? [[lang.bouquetComposition, asDisplay(state.bouquetComposition)]] : []),
@@ -1276,7 +1271,6 @@ stripe: "스트라이프",
     fabricColor: [],
     gardenTableShape: "",
     tableDeco: [],
-    candleColor: [],
     chairFabricColor: [],
     bouquet: "",
     bouquetComposition: "",
@@ -1308,10 +1302,9 @@ stripe: "스트라이프",
     { key: "color", title: "7) arch fabric color" },
     { key: "garden_shape", title: "8) table type (garden)" },
     { key: "table_deco", title: "9) table fabric (square table)" },
-    { key: "candle_color", title: "10) candle color" },
-    { key: "chair_color", title: "11) chair fabric (garden)" },
-    { key: "bouquet", title: "12) bouquet" },
-    { key: "ticket", title: "13) event ticket" },
+    { key: "chair_color", title: "10) chair fabric (garden)" },
+    { key: "bouquet", title: "11) bouquet" },
+    { key: "ticket", title: "12) event ticket" },
     { key: "request_note", title: "request" },
   ];
 
@@ -1741,34 +1734,6 @@ stripe: "스트라이프",
       return;
     }
 
-    if(key === "candle_color"){
-      body.appendChild(renderOptionImageGrid({
-        title: getStepTitleByKey("candle_color"),
-        hintRight: getMultiSelectText(),
-        stateKey: "candleColor",
-        value: state.candleColor,
-        options: [
-          { tag:"cream", val:"cream" },
-          { tag:"pink", val:"pink" },
-          { tag:"green", val:"green" },
-          { tag:"purple", val:"purple" },
-          { tag:"yellow", val:"yellow" },
-          { tag:"black", val:"black" },
-          { tag:"orange", val:"orange" },
-          { tag:"mint", val:"mint" },
-          { tag:"blue", val:"blue" },
-          { tag:"-", val:"-" }
-        ],
-        multi:true
-      }));
-
-      const n = document.createElement("div");
-      n.className = "note";
-      n.textContent = getStepNoteCandle();
-      body.appendChild(n);
-      return;
-    }
-
     if(key === "chair_color"){
       body.appendChild(renderOptionImageGrid({
         title: getStepTitleByKey("chair_color"),
@@ -1871,7 +1836,6 @@ stripe: "스트라이프",
       <div class="tag muted"><b>${escapeHtml(lang.tableTypeGarden)}</b>: ${escapeHtml(translateDisplay(state.gardenTableShape))}</div>
 
       <div class="tag muted"><b>${escapeHtml(lang.tableFabricSquare)}</b>: ${escapeHtml(translateDisplay(state.tableDeco))}</div>
-      <div class="tag muted"><b>${escapeHtml(lang.candleColor)}</b>: ${escapeHtml(translateDisplay(state.candleColor))}</div>
       <div class="tag muted"><b>${escapeHtml(lang.chairFabricGarden)}</b>: ${escapeHtml(translateDisplay(state.chairFabricColor))}</div>
 
       <div class="tag muted"><b>${escapeHtml(lang.bouquet)}</b>: ${escapeHtml(translateDisplay(state.bouquet))}</div>
@@ -1945,14 +1909,13 @@ stripe: "스트라이프",
       ["7) arch fabric color", asDisplay(state.fabricColor)],
       ["8) table type (garden)", asDisplay(state.gardenTableShape)],
       ["9) table fabric (square table)", asDisplay(state.tableDeco)],
-      ["10) candle color", asDisplay(state.candleColor)],
-      ["11) chair fabric (garden)", asDisplay(state.chairFabricColor)],
-      ["12) bouquet", asDisplay(state.bouquet)],
+      ["10) chair fabric (garden)", asDisplay(state.chairFabricColor)],
+      ["11) bouquet", asDisplay(state.bouquet)],
       ...(state.bouquet === "o" ? [["bouquet composition", asDisplay(state.bouquetComposition)]] : []),
-      ["13) event ticket", asDisplay(state.eventTicket)],
-      ["14) sound direction", FIXED_13],
-      ["15) flower direction", FIXED_14],
-      ["16) detailed inquiries", FIXED_15],
+      ["12) event ticket", asDisplay(state.eventTicket)],
+      ["13) sound direction", FIXED_13],
+      ["14) flower direction", FIXED_14],
+      ["15) detailed inquiries", FIXED_15],
     ];
   }
 
@@ -1990,7 +1953,6 @@ stripe: "스트라이프",
     addMulti(lang.archFabricColor, "fabricColor", state.fabricColor);
     addSingle(lang.tableTypeGarden, "gardenTableShape", state.gardenTableShape, translateDisplay(state.gardenTableShape));
     addMulti(lang.tableFabricSquare, "tableDeco", state.tableDeco);
-    addMulti(lang.candleColor, "candleColor", state.candleColor);
     addMulti(lang.chairFabricGarden, "chairFabricColor", state.chairFabricColor);
     addSingle(lang.bouquet, "bouquet", state.bouquet, translateDisplay(state.bouquet));
     addSingle(lang.eventTicket, "eventTicket", state.eventTicket, translateDisplay(state.eventTicket));
@@ -2110,14 +2072,13 @@ stripe: "스트라이프",
       "7) arch fabric color",
       "8) table type (garden)",
       "9) table fabric (square table)",
-      "10) candle color",
-      "11) chair fabric (garden)",
-      "12) bouquet",
+      "10) chair fabric (garden)",
+      "11) bouquet",
       "bouquet composition",
-      "13) event ticket",
-      "14) sound direction",
-      "15) flower direction",
-      "16) detailed inquiries",
+      "12) event ticket",
+      "13) sound direction",
+      "14) flower direction",
+      "15) detailed inquiries",
       "request"
     ];
 
@@ -2134,7 +2095,6 @@ stripe: "스트라이프",
       asDisplay(state.fabricColor),
       asDisplay(state.gardenTableShape),
       asDisplay(state.tableDeco),
-      asDisplay(state.candleColor),
       asDisplay(state.chairFabricColor),
       asDisplay(state.bouquet),
       state.bouquet === "o" ? asDisplay(state.bouquetComposition) : "-",
@@ -2172,7 +2132,6 @@ stripe: "스트라이프",
       { wch: 24 },
       { wch: 20 },
       { wch: 28 },
-      { wch: 20 },
       { wch: 24 },
       { wch: 14 },
       { wch: 28 },
@@ -2221,7 +2180,7 @@ stripe: "스트라이프",
 
     if(typeof state.gardenRoadDir !== "string") state.gardenRoadDir = "";
 
-    ["fabricColor", "tableDeco", "candleColor", "chairFabricColor"].forEach((k) => {
+    ["fabricColor", "tableDeco", "chairFabricColor"].forEach((k) => {
       if(!Array.isArray(state[k])){
         state[k] = (state[k] && String(state[k]).trim()) ? [String(state[k])] : [];
       }
